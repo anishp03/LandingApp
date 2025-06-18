@@ -1,0 +1,47 @@
+############################
+# ASP.NET / .NET Core
+############################
+bin/
+obj/
+*.dll
+*.pdb
+*.exe
+*.user
+*.suo
+*.dbmdl
+*.log
+
+############################
+# Visual Studio / VS Code
+############################
+.vscode/
+.vs/
+*.sln.docstates
+
+############################
+# Node (if using npm or yarn)
+############################
+node_modules/
+wwwroot/lib/
+
+############################
+# Symfony / PHP
+############################
+/vendor/
+/var/
+/.env
+.env.local
+.env.*.local
+.phpunit.result.cache
+/public/bundles/
+/node_modules/
+
+# Symfony cache/logs
+/var/cache/
+/var/log/
+
+############################
+# OS/System Files
+############################
+.DS_Store
+Thumbs.db
