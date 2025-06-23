@@ -8,8 +8,7 @@
 return [
     false, // $matchHost
     [ // $staticRoutes
-        '/hello' => [[['_route' => 'hello_world', '_controller' => 'App\\Controller\\HelloController::hello'], null, null, null, false, false, null]],
-        '/reverse' => [[['_route' => 'reverse_me', '_controller' => 'App\\Controller\\ReverseController::reverse'], null, null, null, false, false, null]],
+        '/CO2_Data' => [[['_route' => 'CO2_data', '_controller' => 'App\\Controller\\DataController::index'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

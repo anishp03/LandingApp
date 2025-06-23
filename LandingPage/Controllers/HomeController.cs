@@ -4,6 +4,7 @@ using LandingPage.Models;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace LandingPage.Controllers;
 
@@ -21,10 +22,11 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
-        string apiURL = "http://localhost:8080/hello";
+        string apiURL = "http://localhost:8080/CO2_Data";
         try
         {
             HttpResponseMessage response = await _httpClient.GetAsync(apiURL);
+            response.EnsureSuccessStatusCode();
 
             string apiResponse = await response.Content.ReadAsStringAsync();
             ViewBag.Message = apiResponse;
