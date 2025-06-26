@@ -5,6 +5,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use PDO;
 
 
 
@@ -13,27 +14,24 @@ class DataController extends AbstractController
     #[Route('/CO2_Data', name: 'CO2_data')]
     public function index(): Response
     {
-        $host = '127.0.0.1';
-        $user = 'anish';
-        $password = ''; // No password
-        $database = 'LandingPage';
+        $host = $this->getParameter('db.host');
+        $user = $this->getParameter('db.user');
+        $password = $this->getParameter('db.password');
+        $database = $this->getParameter('db.database');
 
-        $conn = new \mysqli($host, $user, $password, $database);
 
-        if ($conn->connect_error) {
-            return new Response('Connection failed: ' . $conn->connect_error);
-        }
 
-        $result = $conn->query("SELECT * FROM `CO2_Data` ORDER BY `CO2 Emmisions/Km(Grams)` desc");
+        $conn = new PDO("mysql:host=$host;dbname=$database", $user, $password);
 
-        $rows = [];
-        while ($row = $result->fetch_assoc()) 
-        {
-            $rows[] = $row;
-        }
-    
-        $conn->close();
-    
+        $sql = "SELECT * FROM `CO2_Data` ORDER BY `CO2 Emmisions/Km(Grams)` desc LIMIT ? ";
+
+      
+        $result = $conn->prepare($sql);
+        $result->bindValue(1, 100, PDO::PARAM_INT);
+        $result->execute();
+
+        $rows = $result->fetchAll(PDO::FETCH_ASSOC);
+
         return new JsonResponse($rows);
     }
 }

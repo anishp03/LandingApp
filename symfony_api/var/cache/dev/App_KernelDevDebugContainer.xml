@@ -23,6 +23,10 @@
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">App_KernelDevDebugContainer</parameter>
+    <parameter key="db.host">%env(DB_HOST)%</parameter>
+    <parameter key="db.user">%env(DB_USER)%</parameter>
+    <parameter key="db.password">%env(DB_PASSWORD)%</parameter>
+    <parameter key="db.database">%env(DB_NAME)%</parameter>
     <parameter key="validator.translation_domain">validators</parameter>
     <parameter key="event_dispatcher.event_aliases" type="collection">
       <parameter key="Symfony\Component\Console\Event\ConsoleCommandEvent">console.command</parameter>
